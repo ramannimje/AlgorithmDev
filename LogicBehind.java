@@ -72,6 +72,7 @@ public class LogicBehind {
 	}
 
 	public NavigableMap<Integer, String> reverseHashMap(){
+		try {
 		System.out.println("The Orignal Hashmap looks like: "+ hm.values());
 		System.out.println("\n");
 		System.out.println("After Reversing the Hashmap it looks like: ");
@@ -88,10 +89,12 @@ public class LogicBehind {
 			k = itr.next();
 			reversedhm.put(k, hm.get(k));
 		}
-		System.out.println(reversedhm.values());
-		System.out.println(reversedhm.keySet());
+		System.out.println("\nReversed HashMap: "+reversedhm.values());
 		logger.info("This is achived by converting the normal Hashmap to the Navigable HashMap and "
 				+ "New Reversed hashmap is the LinkedHashMap");
+		}
+		catch (Exception e) {
+		}
 		return hm;
 	}
 }
