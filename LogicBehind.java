@@ -94,7 +94,39 @@ public class LogicBehind {
 				+ "New Reversed hashmap is the LinkedHashMap");
 		}
 		catch (Exception e) {
+			logger.warning("Error while reversing the HashMap..");
 		}
 		return hm;
+	}
+	
+	public String serialKeyGenerator() {
+		String serialKey = null;
+		Character dashChar = new Character('-');
+		String sb = null;
+		if(serialKey == null) {
+		 serialKey = getSaltString();
+		 System.out.println(serialKey);
+		 int serialKeyLength = serialKey.length();
+		 System.out.println(serialKeyLength);
+		 
+		 sb = serialKey;
+
+		 String temp = null;
+		 int j=0;
+			 for(int i=1; i<serialKey.length(); i++) {
+				 if(i%3 == 0)
+				 {
+					 //System.out.println(sb.substring(j, i));
+					 //System.out.println(sb.substring(i, i+3) + dashChar);
+					 temp = sb.substring(j, i) + dashChar;
+					 temp = temp + sb.substring(i, i+3) + dashChar;
+					 System.out.println(temp);
+					 j = j+3;
+				 }
+				 //System.out.println(temp);
+				 
+			 }
+		}
+		return serialKey;
 	}
 }
