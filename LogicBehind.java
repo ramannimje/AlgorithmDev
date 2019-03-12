@@ -21,7 +21,6 @@ public class LogicBehind {
 		hm.put(4, "Tgb");
 		hm.put(5, "Ujm");
 
-
 		Iterator<Entry<Integer, String>> itr = hm.entrySet().iterator();
 		while(itr.hasNext()) {
 			try {
@@ -46,7 +45,6 @@ public class LogicBehind {
 					}
 					System.out.println("\n");
 				}
-
 				break;
 			} catch (InterruptedException e) {
 				logger.severe("Error while iterating the hashmap..");
@@ -54,7 +52,6 @@ public class LogicBehind {
 				e.printStackTrace();
 			}
 		}
-
 		return hm;
 	}
 
@@ -62,13 +59,12 @@ public class LogicBehind {
 		String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 		StringBuilder salt = new StringBuilder();
 		Random rnd = new Random();
-		while (salt.length() < 18) { // length of the random string.
+		while (salt.length() < 18) {
 			int index = (int) (rnd.nextFloat() * SALTCHARS.length());
 			salt.append(SALTCHARS.charAt(index));
 		}
 		String saltStr = salt.toString();
 		return saltStr;
-
 	}
 
 	public NavigableMap<Integer, String> reverseHashMap(){
@@ -99,7 +95,7 @@ public class LogicBehind {
 		return hm;
 	}
 
-	public String serialKeysGenerator() {
+	public void serialKeysGenerator() {
 		String serialKey = null;
 		Character dashChar = new Character('-');
 		String sb = null;
@@ -107,10 +103,10 @@ public class LogicBehind {
 			for(int l=1; l<=hm.size(); l++) {
 				serialKey = hm.get(l);
 				System.out.println("The Generated Random value is:" +serialKey);
-				
+
 				int serialKeyLength = serialKey.length();
 				System.out.println("The length of Random value is: " +serialKeyLength);
-				
+
 				logger.info("Your Serial key of Product is: ");
 
 				sb = serialKey;
@@ -130,6 +126,5 @@ public class LogicBehind {
 				System.out.println("\n");
 			}
 		}
-		return serialKey;
 	}
 }
