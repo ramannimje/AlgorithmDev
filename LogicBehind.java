@@ -1,5 +1,7 @@
 package com.practo.rmn;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -181,13 +183,29 @@ public class LogicBehind {
 		System.out.println("Put from where you want to start Journey: ");
 		String source = scFrom.nextLine();
 		System.out.println(source);
-		
+
 		System.out.println("Put your Destination point: ");
 		Scanner scTo =  new Scanner(System.in);
 		String destination = scTo.nextLine();
-		
+
 		String startSource= null;
 		String endDestination= null;
+		
+		System.out.println("Please put the Date of Journey: ");
+		Scanner dateScan = new Scanner(System.in);
+		String date = dateScan.next();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		java.util.Date dateOfJourney = null;
+		
+		try {
+			dateOfJourney = sdf.parse(date);
+		}
+		catch (ParseException e) {
+			logger.warning("Error while parsing the date..");
+		}
+		
+		System.out.println("Your Date of Journey is: " +dateOfJourney);
 		List<String> countries = getCountries();
 		if(scFrom != null) {
 			if(countries.contains(source)) {
@@ -195,14 +213,14 @@ public class LogicBehind {
 				System.out.println("Your Source is: " +startSource);
 			}
 		}
-		
+
 		if(scTo != null) {
 			if(countries.contains(destination)) {
 				endDestination = destination;
 				System.out.println("Your Destination is: " +endDestination);
 			}
 		}
-		
+
 		String journeyDetails = startSource + " ---> " + destination;
 		String airline = null;
 		System.out.println("Journey Details: "+ journeyDetails);
@@ -325,6 +343,7 @@ public class LogicBehind {
 				airline = "Air New Zealand";
 			}
 		}
+
 		
 		HashMap<String, String> airlinehm = new HashMap<String, String>();
 		airlinehm.put(journeyDetails, airline);
@@ -332,6 +351,7 @@ public class LogicBehind {
 		System.out.println("\n");
 		System.out.println("************Flight Search Result***********");
 		System.out.println("********  "+journeyDetails + "  ***********");
+		System.out.println("********  "+dateOfJourney  + "  ***********");
 		System.out.println("********  "+airline + "  ***********");
 	}
 }
